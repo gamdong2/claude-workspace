@@ -119,3 +119,11 @@
 - winget으로 `GitHub.cli` 설치 (v2.105.0, 위치: `C:\Program Files\GitHub CLI\gh.exe`)
 - 확인: `gh --version` 실행 성공
 - 남은 일: 새 터미널에서 `gh auth login`으로 GitHub 로그인 (Yura가 직접)
+
+## 2026-11-24 — GitHub private 레포 업로드
+
+- 새 파일 `.gitignore`: `.env`, 키·인증서, `*recovery-codes*`, 개인정보(이력서·sales.csv·자기소개서), `*.bak`, `__pycache__/`, `weather.txt` 제외
+- `README.md` 폴더 구조 최신화 (예전 버전은 `README.md.bak`)
+- `git init` → 커밋 `Initial setup` → `gh repo create`로 private 레포 생성·push
+- 주소: https://github.com/gamdong2/claude-workspace
+- 확인: 공개 설정 PRIVATE, GitHub에 올라간 파일 10개 중 `.env`·복구 코드·개인정보 파일 없음

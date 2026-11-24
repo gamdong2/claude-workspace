@@ -50,19 +50,28 @@
 - [x] 4. 브라우저로 열기 → Yura가 화면 확인
 - [x] 5. todo 체크 + progress 기록
 
-## 2026-11-24 — GitHub private 레포 업로드 (⏳ 승인 대기)
+## 2026-11-24 — GitHub private 레포 업로드 (✅ 완료)
 
-- [ ] 1. `.gitignore` 만들기 — `.env`, `*.key`, `*.pem`, `id_rsa*`, `*credentials*`, `*recovery-codes*`, `*.bak`, `__pycache__/` 제외 (+ Yura가 고른 개인정보 파일)
-- [ ] 2. `README.md`를 현재 폴더 구조에 맞게 정리 (기존 파일은 `README.md.bak`으로 백업)
-- [ ] 3. `git init` → `git add` → **올라갈 파일 목록을 Yura에게 보여주고 확인** (민감 파일 없는지)
-- [ ] 4. 첫 커밋: `Initial setup`
-- [ ] 5. `gh repo create`로 **private** 레포 생성 + push
-- [ ] 6. GitHub에서 private인지, `.env`·복구 코드가 없는지 확인 + progress 기록
+- [x] 1. `.gitignore` 만들기 — `.env`, `*.key`, `*.pem`, `id_rsa*`, `*credentials*`, `*recovery-codes*`, `*.bak`, `__pycache__/` 제외 (+ Yura가 고른 개인정보 파일)
+- [x] 2. `README.md`를 현재 폴더 구조에 맞게 정리 (기존 파일은 `README.md.bak`으로 백업)
+- [x] 3. `git init` → `git add` → **올라갈 파일 목록을 Yura에게 보여주고 확인** (민감 파일 없는지)
+- [x] 4. 첫 커밋: `Initial setup`
+- [x] 5. `gh repo create`로 **private** 레포 생성 + push
+- [x] 6. GitHub에서 private인지, `.env`·복구 코드가 없는지 확인 + progress 기록
+
+## 2026-11-24 — 포트폴리오 다크모드 전환 버튼 (브랜치 작업)
+
+- [x] 0. main에서 지난 기록(todo·progress) 커밋 + push
+- [ ] 1. 새 브랜치 `feature/dark-mode-toggle` 만들기 (main은 그대로 둠)
+- [ ] 2. `portfolio/index.html`에 🌙/☀️ 버튼 추가 — 기본은 다크, 누르면 라이트, 고른 모드는 브라우저가 기억
+- [ ] 3. 확인: 다크·라이트 화면 캡처 + 버튼이 실제로 바뀌는지 확인
+- [ ] 4. 브랜치에 커밋 → main에 머지 → GitHub에 push
+- [ ] 5. GitHub main에 반영됐는지 확인 + progress 기록
 
 ## 다음에 할 일 (아이디어)
 
 - [ ] `.env` 파일 만들고 API 키 넣기 (직접 입력, Claude에게 키를 보여주지 않기)
-- [ ] `.gitignore` 만들기 (`.env`, `*.key`, `*.pem` 같은 파일이 실수로 Git에 올라가지 않게)
+- [x] `.gitignore` 만들기 (`.env`, `*.key`, `*.pem` 같은 파일이 실수로 Git에 올라가지 않게)
 - [ ] 오라클 SSH 키(`~/.ssh/oracle-server.key`) 연결 확인
 
 ---
