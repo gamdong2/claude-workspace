@@ -59,14 +59,14 @@
 - [x] 5. `gh repo create`로 **private** 레포 생성 + push
 - [x] 6. GitHub에서 private인지, `.env`·복구 코드가 없는지 확인 + progress 기록
 
-## 2026-11-24 — 포트폴리오 다크모드 전환 버튼 (브랜치 작업)
+## 2026-11-24 — 포트폴리오 다크모드 전환 버튼 (✅ 완료)
 
 - [x] 0. main에서 지난 기록(todo·progress) 커밋 + push
-- [ ] 1. 새 브랜치 `feature/dark-mode-toggle` 만들기 (main은 그대로 둠)
-- [ ] 2. `portfolio/index.html`에 🌙/☀️ 버튼 추가 — 기본은 다크, 누르면 라이트, 고른 모드는 브라우저가 기억
-- [ ] 3. 확인: 다크·라이트 화면 캡처 + 버튼이 실제로 바뀌는지 확인
-- [ ] 4. 브랜치에 커밋 → main에 머지 → GitHub에 push
-- [ ] 5. GitHub main에 반영됐는지 확인 + progress 기록
+- [x] 1. 새 브랜치 `feature/dark-mode-toggle` 만들기 (main은 그대로 둠)
+- [x] 2. `portfolio/index.html`에 🌙/☀️ 버튼 추가 — 기본은 다크, 누르면 라이트, 고른 모드는 브라우저가 기억
+- [x] 3. 확인: 다크·라이트 화면 캡처 + 버튼이 실제로 바뀌는지 확인
+- [x] 4. 브랜치에 커밋 → main에 머지 → GitHub에 push
+- [x] 5. GitHub main에 반영됐는지 확인 + progress 기록
 
 ## 다음에 할 일 (아이디어)
 

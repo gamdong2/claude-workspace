@@ -127,3 +127,11 @@
 - `git init` → 커밋 `Initial setup` → `gh repo create`로 private 레포 생성·push
 - 주소: https://github.com/gamdong2/claude-workspace
 - 확인: 공개 설정 PRIVATE, GitHub에 올라간 파일 10개 중 `.env`·복구 코드·개인정보 파일 없음
+
+## 2026-11-24 — 포트폴리오 다크모드 전환 버튼
+
+- 브랜치 `feature/dark-mode-toggle`에서 `portfolio/index.html` 수정
+  - 윈도우 설정 자동 따라가기 → 🌙/☀️ 버튼으로 전환 (기본 다크, 고른 모드는 브라우저 localStorage에 저장)
+- 확인: Edge 헤드리스로 다크(기본)·라이트(클릭 후) PC 캡처, 390px iframe으로 휴대폰 레이아웃 확인 (넘침 없음)
+  - 참고: 헤드리스 Edge는 창 너비를 약 500px 아래로 못 줄임 → 휴대폰 확인은 iframe으로 해야 정확
+- main에 머지(`5939533`) → GitHub push, GitHub main과 로컬 main 일치 확인
