@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Yura — Marketing Specialist</title>
   <meta name="description" content="데이터로 성장을 설계하는 마케터 Yura의 포트폴리오" />
+  <script>
+    // 화면이 그려지기 전에 테마를 정해서 깜빡임을 막아요. 기본값은 다크.
+    (function () {
+      var saved = null;
+      try { saved = localStorage.getItem("theme"); } catch (e) {}
+      document.documentElement.setAttribute("data-theme", saved === "light" ? "light" : "dark");
+    })();
+  </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
     :root {
@@ -18,17 +26,29 @@
       --radius: 14px;
       --max: 1040px;
     }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #121415;
-        --surface: #1a1d1f;
-        --ink: #eceae6;
-        --muted: #a1a4a8;
-        --line: #2b2f32;
-        --accent: #4fd1c0;
-        --accent-soft: #17312e;
-      }
+    /* 다크모드: <html data-theme="dark"> 일 때 적용 (기본값) */
+    :root[data-theme="dark"] {
+      --bg: #121415;
+      --surface: #1a1d1f;
+      --ink: #eceae6;
+      --muted: #a1a4a8;
+      --line: #2b2f32;
+      --accent: #4fd1c0;
+      --accent-soft: #17312e;
+      color-scheme: dark;
     }
+
+    /* ---------- 다크/라이트 전환 버튼 ---------- */
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .theme-toggle {
+      width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 18px; line-height: 1;
+      background: var(--surface); border: 1px solid var(--line); color: var(--ink);
+      transition: border-color .15s, transform .15s;
+    }
+    .theme-toggle:hover { border-color: var(--accent); transform: rotate(-15deg); }
+    .theme-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -162,6 +182,7 @@
   <header class="nav">
     <div class="wrap">
       <a class="logo" href="#top">Yura<span>.</span></a>
+      <div class="nav-right">
       <nav>
         <ul>
           <li><a href="#about">소개</a></li>
@@ -170,6 +191,8 @@
           <li><a href="#contact">연락처</a></li>
         </ul>
       </nav>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="라이트 모드로 바꾸기" title="라이트 모드로 바꾸기">☀️</button>
+      </div>
     </div>
   </header>
 
@@ -320,5 +343,26 @@
     <div class="wrap">© 2026 Yura · 서울 마포구</div>
   </footer>
 
+  <script>
+    // 🌙/☀️ 버튼: 누를 때마다 다크 ↔ 라이트, 고른 값은 브라우저에 저장
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById("theme-toggle");
+      function render() {
+        var dark = root.getAttribute("data-theme") === "dark";
+        btn.textContent = dark ? "☀️" : "🌙";
+        var label = dark ? "라이트 모드로 바꾸기" : "다크 모드로 바꾸기";
+        btn.setAttribute("aria-label", label);
+        btn.title = label;
+      }
+      btn.addEventListener("click", function () {
+        var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        try { localStorage.setItem("theme", next); } catch (e) {}
+        render();
+      });
+      render();
+    })();
+  </script>
 </body>
 </html>
