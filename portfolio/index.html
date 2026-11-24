@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yura — Marketing Specialist</title>
+  <meta name="description" content="데이터로 성장을 설계하는 마케터 Yura의 포트폴리오" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --surface: #ffffff;
+      --ink: #1c1d1f;
+      --muted: #62656b;
+      --line: #e6e3dc;
+      --accent: #0f766e;
+      --accent-soft: #e3f2ef;
+      --radius: 14px;
+      --max: 1040px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #121415;
+        --surface: #1a1d1f;
+        --ink: #eceae6;
+        --muted: #a1a4a8;
+        --line: #2b2f32;
+        --accent: #4fd1c0;
+        --accent-soft: #17312e;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      word-break: keep-all;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- 상단 메뉴 ---------- */
+    header.nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+    header.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+    .logo { font-weight: 800; letter-spacing: -0.02em; text-decoration: none; }
+    .logo span { color: var(--accent); }
+    nav ul { display: flex; gap: 28px; list-style: none; }
+    nav a { text-decoration: none; color: var(--muted); font-size: 15px; font-weight: 500; }
+    nav a:hover { color: var(--accent); }
+
+    /* ---------- 첫 화면 ---------- */
+    .hero { padding: 96px 0 72px; }
+    .eyebrow {
+      display: inline-block; font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent);
+      background: var(--accent-soft); padding: 6px 12px; border-radius: 999px;
+    }
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 72px); line-height: 1.1; letter-spacing: -0.035em;
+      font-weight: 800; margin: 22px 0 18px;
+    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p.lead { font-size: clamp(17px, 2.2vw, 20px); color: var(--muted); max-width: 640px; }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; text-decoration: none;
+      font-weight: 600; font-size: 15px; padding: 13px 22px; border-radius: 10px;
+      border: 1px solid var(--line); background: var(--surface); transition: transform .15s, border-color .15s;
+    }
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 64px;
+    }
+    .stat {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 24px;
+    }
+    .stat b { display: block; font-size: 36px; font-weight: 800; letter-spacing: -0.03em; color: var(--accent); line-height: 1.2; }
+    .stat span { color: var(--muted); font-size: 15px; }
+
+    /* ---------- 공통 섹션 ---------- */
+    section.block { padding: 72px 0; border-top: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: 220px 1fr; gap: 40px; }
+    .section-head h2 { font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding-top: 6px; }
+
+    .about p { font-size: 18px; margin-bottom: 16px; }
+    .about p:last-child { margin-bottom: 0; }
+    .interests { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+
+    /* ---------- 경력 ---------- */
+    .jobs { display: grid; gap: 20px; }
+    .job {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: 28px 28px 24px;
+    }
+    .job-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; }
+    .job h3 { font-size: 20px; letter-spacing: -0.02em; }
+    .job .period { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .job .role { color: var(--accent); font-weight: 600; font-size: 15px; margin: 2px 0 14px; }
+    .job .role small { color: var(--muted); font-weight: 400; }
+    .job ul { list-style: none; display: grid; gap: 6px; }
+    .job li { position: relative; padding-left: 18px; color: var(--ink); font-size: 15.5px; }
+    .job li::before { content: ""; position: absolute; left: 2px; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+    .job li strong { color: var(--accent); }
+
+    /* ---------- 스킬 ---------- */
+    .skills { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px 32px; }
+    .skills h4 { font-size: 15px; margin-bottom: 10px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: 14px; padding: 5px 12px; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--line); color: var(--ink);
+    }
+    .tag.soft { background: var(--accent-soft); border-color: transparent; color: var(--accent); font-weight: 500; }
+
+    /* ---------- 연락처 ---------- */
+    .contact-title { font-size: clamp(28px, 4.5vw, 44px); letter-spacing: -0.03em; line-height: 1.25; margin-bottom: 28px; font-weight: 800; }
+    .contacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .contact {
+      display: block; text-decoration: none; background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 22px 24px; transition: border-color .15s, transform .15s;
+    }
+    .contact:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .contact small { display: block; font-size: 13px; color: var(--muted); font-weight: 600; letter-spacing: 0.04em; margin-bottom: 4px; }
+    .contact span { font-weight: 600; overflow-wrap: anywhere; }
+
+    footer { padding: 40px 0 56px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
+
+    /* ---------- 반응형: 태블릿 ---------- */
+    @media (max-width: 860px) {
+      .section-head { grid-template-columns: 1fr; gap: 20px; }
+      .contacts { grid-template-columns: 1fr; }
+    }
+    /* ---------- 반응형: 휴대폰 ---------- */
+    @media (max-width: 600px) {
+      nav ul { gap: 16px; }
+      nav a { font-size: 14px; }
+      nav li.hide-sm { display: none; }
+      .hero { padding: 56px 0 48px; }
+      .stats { grid-template-columns: 1fr; gap: 12px; margin-top: 40px; }
+      .stat { display: flex; align-items: baseline; gap: 14px; padding: 18px 20px; }
+      .stat b { font-size: 28px; min-width: 88px; }
+      section.block { padding: 56px 0; }
+      .about p { font-size: 16.5px; }
+      .job { padding: 22px 20px 20px; }
+      .skills { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="logo" href="#top">Yura<span>.</span></a>
+      <nav>
+        <ul>
+          <li><a href="#about">소개</a></li>
+          <li><a href="#experience">경력</a></li>
+          <li class="hide-sm"><a href="#skills">스킬</a></li>
+          <li><a href="#contact">연락처</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- 첫 화면 -->
+    <section class="hero">
+      <div class="wrap">
+        <span class="eyebrow">Marketing Specialist</span>
+        <h1>안녕하세요, <em>Yura</em>입니다.<br />숫자로 성장을 설계합니다.</h1>
+        <p class="lead">B2B SaaS와 DTC 브랜드에서 6년간 퍼포먼스·콘텐츠·데이터 마케팅을 해왔습니다. 광고비 한 푼, 콘텐츠 한 편이 어떤 결과로 이어지는지 끝까지 추적하는 마케터입니다.</p>
+        <div class="cta">
+          <a class="btn primary" href="#contact">연락하기 →</a>
+          <a class="btn" href="#experience">경력 보기</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><b>−38%</b><span>유입 CPL 절감 (6개월)</span></div>
+          <div class="stat"><b>2.3배</b><span>오가닉 트래픽 증가</span></div>
+          <div class="stat"><b>12만</b><span>인스타그램 팔로워 (2.5만에서)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 자기소개 -->
+    <section class="block" id="about">
+      <div class="wrap section-head">
+        <h2>About</h2>
+        <div class="about">
+          <p>한양대학교 경영학과를 졸업하고, DTC 뷰티 브랜드에서 인스타그램과 인플루언서 마케팅으로 커리어를 시작했습니다. 지금은 B2B SaaS 스타트업에서 월 5천만 원 규모의 광고 집행과 SEO, 콘텐츠, 마케팅 자동화를 총괄하고 있습니다.</p>
+          <p>감이 아니라 데이터로 결정합니다. GA4·Amplitude·BigQuery로 채널별 기여도를 다시 계산해 예산을 재분배했고, AI와 자동화 도구로 팀의 반복 업무를 줄여 더 중요한 일에 시간을 쓰도록 만들었습니다.</p>
+          <div class="interests">
+            <span class="tag soft">B2B SaaS 그로스</span>
+            <span class="tag soft">PLG</span>
+            <span class="tag soft">AI 콘텐츠 자동화</span>
+            <span class="tag soft">어트리뷰션 모델링</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 경력 -->
+    <section class="block" id="experience">
+      <div class="wrap section-head">
+        <h2>Experience</h2>
+        <div class="jobs">
+
+          <article class="job">
+            <div class="job-top">
+              <h3>테크노바</h3>
+              <span class="period">2022.03 — 현재</span>
+            </div>
+            <p class="role">마케팅 매니저 <small>· B2B SaaS 스타트업 (시리즈 A)</small></p>
+            <ul>
+              <li>Google·Meta·Naver 광고 월 5천만 원 규모 퍼포먼스 마케팅 총괄</li>
+              <li>유입 CPL <strong>38% 절감</strong>, 유료 전환율 2.1% → <strong>3.4%</strong> 개선</li>
+              <li>핵심 키워드 27개 10위권 진입, 오가닉 트래픽 <strong>2.3배</strong> 증가</li>
+              <li>HubSpot 마케팅 자동화 워크플로우 12종 구축, 뉴스레터 구독자 8,000명 확보</li>
+            </ul>
+          </article>
+
+          <article class="job">
+            <div class="job-top">
+              <h3>리브랜드</h3>
+              <span class="period">2019.03 — 2022.02</span>
+            </div>
+            <p class="role">마케팅 어시스턴트 <small>· DTC 뷰티 브랜드</small></p>
+            <ul>
+              <li>인스타그램 브랜드 계정 팔로워 2.5만 → <strong>12만</strong> 성장 (3년)</li>
+              <li>인플루언서 캠페인 14건 진행, 평균 ROAS <strong>4.2배</strong></li>
+              <li>시즌 한정 라인 포함 신제품 런칭 캠페인 6건 기획·집행</li>
+            </ul>
+          </article>
+
+          <!-- 아래 경력은 예시로 임의 작성한 내용입니다. 실제 경력으로 바꿔 주세요. -->
+          <article class="job">
+            <div class="job-top">
+              <h3>브릿지애드</h3>
+              <span class="period">2018.07 — 2018.12</span>
+            </div>
+            <p class="role">디지털 마케팅 인턴 <small>· 디지털 광고 대행사</small></p>
+            <ul>
+              <li>식음료·패션 클라이언트 5곳의 검색 광고 키워드 리서치 및 주간 리포트 작성</li>
+              <li>SNS 광고 소재 A/B 테스트 운영 보조, 클릭률 <strong>1.4배</strong> 개선 소재 발굴</li>
+              <li>경쟁사 캠페인 모니터링 보드 구축으로 기획 회의 자료 준비 시간 단축</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 스킬 -->
+    <section class="block" id="skills">
+      <div class="wrap section-head">
+        <h2>Skills</h2>
+        <div class="skills">
+          <div>
+            <h4>퍼포먼스 마케팅</h4>
+            <div class="tags"><span class="tag">Google Ads</span><span class="tag">Meta Ads</span><span class="tag">Naver Search</span><span class="tag">Kakao Moment</span></div>
+          </div>
+          <div>
+            <h4>데이터 분석</h4>
+            <div class="tags"><span class="tag">GA4</span><span class="tag">Amplitude</span><span class="tag">Looker Studio</span><span class="tag">Tableau</span><span class="tag">Hotjar</span></div>
+          </div>
+          <div>
+            <h4>마케팅 자동화</h4>
+            <div class="tags"><span class="tag">HubSpot</span><span class="tag">Mailchimp</span><span class="tag">Zapier</span></div>
+          </div>
+          <div>
+            <h4>콘텐츠 · SEO</h4>
+            <div class="tags"><span class="tag">카피라이팅</span><span class="tag">SEO</span><span class="tag">Ahrefs</span><span class="tag">Notion</span><span class="tag">Figma</span></div>
+          </div>
+          <div>
+            <h4>기술</h4>
+            <div class="tags"><span class="tag">Excel 고급</span><span class="tag">SQL 기초</span><span class="tag">Python (pandas)</span></div>
+          </div>
+          <div>
+            <h4>언어 · 자격</h4>
+            <div class="tags"><span class="tag">영어 비즈니스 (TOEIC 925)</span><span class="tag">Google Ads 인증</span><span class="tag">GAIQ</span><span class="tag">HubSpot 인증</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 연락처 -->
+    <section class="block" id="contact">
+      <div class="wrap section-head">
+        <h2>Contact</h2>
+        <div>
+          <p class="contact-title">함께 성장할 팀을 찾고 있어요.<br />편하게 연락 주세요.</p>
+          <div class="contacts">
+            <a class="contact" href="mailto:soomin.kim@example.com">
+              <small>EMAIL</small><span>soomin.kim@example.com</span>
+            </a>
+            <a class="contact" href="tel:010-1234-5678">
+              <small>PHONE</small><span>010-1234-5678</span>
+            </a>
+            <a class="contact" href="https://linkedin.com/in/soomin-kim" target="_blank" rel="noopener">
+              <small>LINKEDIN</small><span>linkedin.com/in/soomin-kim</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 Yura · 서울 마포구</div>
+  </footer>
+
+</body>
+</html>

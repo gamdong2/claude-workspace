@@ -1,0 +1,74 @@
+# ✅ 오늘 할 일
+
+> 작업 시작할 때 Claude Code가 이 파일을 먼저 확인해요.
+> 끝난 항목은 `[x]`로 체크하고, 다 끝나면 `progress.md`에 기록해요.
+
+---
+
+## 2026-11-23 — 작업 환경 구축
+
+- [x] `tasks/` 폴더 + `todo.md`, `progress.md` 만들기
+- [x] `SECURITY.md` 비상 매뉴얼 쓰기
+- [x] `README.md` 폴더 구조 안내 쓰기
+
+## 2026-11-23 — fake_downloads 정리 (✅ 완료)
+
+- [x] 1. 백업: `fake_downloads` 전체를 `fake_downloads_backup`으로 복사
+- [x] 2. `images/`, `docs/`, `misc/` 폴더 만들기
+- [x] 3. 이미지 5개 → `images/` (jpg, png, gif, webp)
+- [x] 4. 문서 5개 → `docs/` (pdf, docx, xlsx, txt, pptx)
+- [x] 5. 나머지 5개 → `misc/` (exe, zip, mp3, mp4, json)
+- [x] 6. 확인: 개수 15개 맞는지, 남은 파일 없는지, 백업 그대로인지
+
+## 2026-11-24 — 강남구 날씨·미세먼지 자동 저장 (✅ 완료)
+
+- [x] 1. 스크립트 작성: `scripts/weather.py` (Open-Meteo, 키 없음, 추가 설치 없음)
+- [x] 2. 직접 한 번 실행 → `weather.txt` 내용 확인
+- [x] 3. Windows 작업 스케줄러에 "매일 오전 9시" 등록
+- [x] 4. 스케줄러로 즉시 1회 실행해서 자동 실행도 되는지 확인
+- [x] 5. 끄는 방법(등록 해제) 안내 + progress 기록
+
+## 2026-11-24 — 날씨 디스코드 전송 (용인/광교, ✅ 완료)
+
+- [x] 0. (Yura) 디스코드에서 웹훅 만들기 → `.env`에 직접 붙여넣기
+- [x] 1. `.env` 빈 틀 만들기 (`DISCORD_WEBHOOK_URL=`)
+- [x] 2. 새 파일 `scripts/send_discord.py` 작성 (weather.txt 읽어서 전송, `weather.py`는 그대로)
+- [x] 3. 직접 실행 → 디스코드 채널에 메시지 왔는지 Yura가 확인
+- [x] 4. 스케줄러 `GwanggyoWeather`로 새로 등록 (날씨 저장 → 디스코드 전송), 예전 `GangnamWeather` 삭제
+- [x] 5. 스케줄러로 즉시 1회 실행해서 확인 + progress 기록
+
+## 2026-11-24 — 포트폴리오 웹페이지 (✅ 완료)
+
+- [x] 1. 새 폴더 `portfolio/` + 파일 1개 `portfolio/index.html` 만들기 (CSS 포함, 외부 설치 없음)
+- [x] 2. 내용 채우기
+  - 상단: 이름 · 직업(Marketing Specialist) · 한 줄 소개 + 숫자 성과 3개 (CPL -38%, 오가닉 2.3배, 팔로워 12만)
+  - 자기소개: 이력서 내용 요약 (B2B SaaS 그로스, 데이터 기반 마케팅, AI 자동화)
+  - 경력 3개: 테크노바(이력서) / 리브랜드(이력서) / 마케팅 인턴 1개(임의로 만든 내용)
+  - 스킬 태그 (이력서 보유 스킬 표)
+  - 연락처: 이메일 · 전화 · LinkedIn (이력서 본문 예시 정보만, 워터마크 정보는 제외)
+- [x] 3. 반응형 확인 (휴대폰 너비에서 1열로 바뀌는지)
+- [x] 4. 브라우저로 열기 → Yura가 화면 확인
+- [x] 5. todo 체크 + progress 기록
+
+## 2026-11-24 — GitHub private 레포 업로드 (⏳ 승인 대기)
+
+- [ ] 1. `.gitignore` 만들기 — `.env`, `*.key`, `*.pem`, `id_rsa*`, `*credentials*`, `*recovery-codes*`, `*.bak`, `__pycache__/` 제외 (+ Yura가 고른 개인정보 파일)
+- [ ] 2. `README.md`를 현재 폴더 구조에 맞게 정리 (기존 파일은 `README.md.bak`으로 백업)
+- [ ] 3. `git init` → `git add` → **올라갈 파일 목록을 Yura에게 보여주고 확인** (민감 파일 없는지)
+- [ ] 4. 첫 커밋: `Initial setup`
+- [ ] 5. `gh repo create`로 **private** 레포 생성 + push
+- [ ] 6. GitHub에서 private인지, `.env`·복구 코드가 없는지 확인 + progress 기록
+
+## 다음에 할 일 (아이디어)
+
+- [ ] `.env` 파일 만들고 API 키 넣기 (직접 입력, Claude에게 키를 보여주지 않기)
+- [ ] `.gitignore` 만들기 (`.env`, `*.key`, `*.pem` 같은 파일이 실수로 Git에 올라가지 않게)
+- [ ] 오라클 SSH 키(`~/.ssh/oracle-server.key`) 연결 확인
+
+---
+
+<!-- 형식 예시
+## YYYY-MM-DD — 작업 제목
+- [ ] 할 일 1
+- [ ] 할 일 2
+-->
