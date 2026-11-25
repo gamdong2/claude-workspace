@@ -135,3 +135,9 @@
 - 확인: Edge 헤드리스로 다크(기본)·라이트(클릭 후) PC 캡처, 390px iframe으로 휴대폰 레이아웃 확인 (넘침 없음)
   - 참고: 헤드리스 Edge는 창 너비를 약 500px 아래로 못 줄임 → 휴대폰 확인은 iframe으로 해야 정확
 - main에 머지(`5939533`) → GitHub push, GitHub main과 로컬 main 일치 확인
+
+## 2026-11-25 — 부록B PDF GitHub 업로드
+
+- `pypdf` 설치(PDF 글자 추출용) → `부록B_Vercel_슬라이드.pdf`(15쪽) 텍스트 검사: 키·웹훅·이메일·전화 0건
+- 참고: 슬라이드 속 이미지(스크린샷) 내용은 글자 검사로 확인 불가
+- 커밋 `Add Appendix B Vercel slides` → push, GitHub main에 파일 있는 것 확인
