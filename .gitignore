@@ -41,3 +41,6 @@ weather.txt
 Thumbs.db
 desktop.ini
 .DS_Store
+
+# Vercel 연결 정보 (내 컴퓨터 전용)
+.vercel/

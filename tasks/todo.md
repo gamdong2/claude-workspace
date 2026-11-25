@@ -95,3 +95,10 @@
 - [ ] 할 일 1
 - [ ] 할 일 2
 -->
+
+## 2026-11-26 — GitHub 레포를 Vercel GUI로 바로 배포할 수 있게 세팅
+
+- [x] 1. 루트에 `vercel.json` (`outputDirectory: "portfolio"`, `framework: null`, 빌드 없음) → portfolio만 공개
+- [x] 2. `.gitignore`에 `.vercel` 추가
+- [x] 3. 임시 복사본에서 `vercel build`로 결과물에 portfolio 파일만 있는지 확인
+- [ ] 4. 커밋 + push → Yura가 Vercel에서 Import → Deploy

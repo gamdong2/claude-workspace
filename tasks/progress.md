@@ -150,3 +150,10 @@
 - Vercel 플러그인(v0.56.0)과 Vercel MCP는 이미 설치돼 있음. MCP 승인(OAuth)은 보류
 - 포트폴리오 배포는 Yura가 직접 하기로 함. 안내한 것: Root Directory `portfolio` 필수(안 하면 CLAUDE.md 등 공개됨), 연락처가 예시 정보(soomin)
 - 추천: Vercel 2FA 켜기
+
+## 2026-11-26 — Vercel GUI 배포용 세팅
+
+- 루트에 `vercel.json`: `framework: null`, 빌드·설치 없음, `outputDirectory: "portfolio"` → Vercel에서 Import 후 Deploy만 누르면 portfolio만 공개
+- `.gitignore`에 `.vercel/` 추가
+- 확인: 임시 복사본에서 `vercel build` 성공, 결과물은 `index.html` 1개 (CLAUDE.md·tasks 없음)
+- 근거 문서: vercel.com/docs/project-configuration/vercel-json, /docs/builds/configure-a-build
