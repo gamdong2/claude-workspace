@@ -1,0 +1,4 @@
+/*
+!portfolio
+!vercel.json
+# 위 3줄: 루트의 모든 파일을 제외(/*)하고, portfolio 폴더와 vercel.json만 Vercel에 업로드 허용(!)

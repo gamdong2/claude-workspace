@@ -157,3 +157,13 @@
 - `.gitignore`에 `.vercel/` 추가
 - 확인: 임시 복사본에서 `vercel build` 성공, 결과물은 `index.html` 1개 (CLAUDE.md·tasks 없음)
 - 근거 문서: vercel.com/docs/project-configuration/vercel-json, /docs/builds/configure-a-build
+
+## 2026-11-26 — CLI(`vercel --prod`) 배포용 세팅
+
+- `.vercelignore` 허용 목록: `portfolio/`, `vercel.json`만 Vercel에 업로드 (없으면 .env·복구 코드까지 업로드됨 — Vercel 문서 확인)
+- Vercel 프로젝트 `yura-portfolio`(팀 yura-8dbd) 생성 + `vercel link` → `.vercel/project.json`
+  - Vercel이 `.env.local`(VERCEL_OIDC_TOKEN) 생성 + `.gitignore`에 `.vercel`, `.env*` 자동 추가
+- GitHub 자동 배포: Not connected (푸시해도 공개 배포 안 됨)
+- `vercel build` 성공, 결과물 index.html 1개
+- `.gitignore`: `.vercel/*` 제외 + `!.vercel/project.json`만 허용 → project.json만 GitHub에
+- 배포 명령 (Yura): `vercel --prod` (claude-workspace 폴더에서)

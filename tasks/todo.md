@@ -102,3 +102,11 @@
 - [x] 2. `.gitignore`에 `.vercel` 추가
 - [x] 3. 임시 복사본에서 `vercel build`로 결과물에 portfolio 파일만 있는지 확인
 - [ ] 4. 커밋 + push → Yura가 Vercel에서 Import → Deploy
+
+## 2026-11-26 — CLI(`vercel --prod`) 배포용 세팅
+
+- [x] 1. `.vercelignore` 허용 목록: `portfolio/`, `vercel.json`만 Vercel에 업로드 (`.env`·복구 코드 업로드 차단)
+- [x] 2. Vercel 프로젝트 `yura-portfolio` 만들기 + `vercel link` → `.vercel/project.json` 생성 (배포는 안 함)
+- [x] 3. GitHub 자동 배포가 켜졌는지 확인 (켜졌으면 꺼서 푸시해도 공개 안 되게)
+- [x] 4. `vercel build`로 결과물에 index.html만 있는지 확인
+- [x] 5. `.gitignore` 조정: `.vercel/project.json`만 GitHub에 올리고 나머지(.env·빌드 결과)는 계속 제외 → 커밋 + push
