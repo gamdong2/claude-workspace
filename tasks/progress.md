@@ -141,3 +141,12 @@
 - `pypdf` 설치(PDF 글자 추출용) → `부록B_Vercel_슬라이드.pdf`(15쪽) 텍스트 검사: 키·웹훅·이메일·전화 0건
 - 참고: 슬라이드 속 이미지(스크린샷) 내용은 글자 검사로 확인 불가
 - 커밋 `Add Appendix B Vercel slides` → push, GitHub main에 파일 있는 것 확인
+
+## 2026-11-25~26 — Vercel 설정
+
+- Vercel CLI 66.6.0 전역 설치 (`npm install --global vercel@latest`)
+- `vercel login` 실패 원인: 컴퓨터 이름이 한글(`유라의_그램_프로16`)이라 요청 헤더에 넣을 수 없음 (`ByteString` 에러)
+  → Yura가 컴퓨터 이름을 `yura-s-gram-pro16`으로 바꾸고 재부팅 → `gamdong2`로 로그인 성공
+- Vercel 플러그인(v0.56.0)과 Vercel MCP는 이미 설치돼 있음. MCP 승인(OAuth)은 보류
+- 포트폴리오 배포는 Yura가 직접 하기로 함. 안내한 것: Root Directory `portfolio` 필수(안 하면 CLAUDE.md 등 공개됨), 연락처가 예시 정보(soomin)
+- 추천: Vercel 2FA 켜기

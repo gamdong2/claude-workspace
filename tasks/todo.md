@@ -68,6 +68,20 @@
 - [x] 4. 브랜치에 커밋 → main에 머지 → GitHub에 push
 - [x] 5. GitHub main에 반영됐는지 확인 + progress 기록
 
+## 2026-11-25 — Vercel 설정 (🟡 거의 완료 — MCP 승인만 남음)
+
+> 참고: https://vercel.com/get-started.md (설정만, 배포·프로젝트 연결은 이번에 안 함)
+
+- [x] 1. Vercel CLI 설치: `npm install --global vercel@latest` → `vercel --version`으로 확인
+- [x] 2. 로그인: `vercel login` → **Yura가 브라우저에서 직접 로그인** → `vercel whoami`로 확인
+  - 처음엔 한글 컴퓨터 이름 때문에 `ByteString` 에러 → 컴퓨터 이름을 `yura-s-gram-pro16`으로 바꾸고 재부팅 → `gamdong2`로 로그인 성공
+- [x] 3. Vercel 플러그인: `vercel@claude-plugins-official` v0.56.0 이미 설치됨 (Claude Code 권유로 설치)
+- [x] 4. Vercel MCP: 플러그인에 포함 (`https://mcp.vercel.com`) → 따로 추가 안 함
+- [ ] 5. (선택) **Yura가 `/mcp`에서 Vercel 로그인(승인)** — 배포를 직접 하므로 보류 → 읽기 전용 `list_teams`로 연결 확인
+- [x] 6. 결과 정리 + progress 기록
+- [ ] 7. (Yura) 포트폴리오 배포 — Root Directory는 반드시 `portfolio`
+
+
 ## 다음에 할 일 (아이디어)
 
 - [ ] `.env` 파일 만들고 API 키 넣기 (직접 입력, Claude에게 키를 보여주지 않기)
