@@ -172,3 +172,12 @@
 
 - 다크 모드 색 변경: 배경 #121415→#0f1b33, 카드 #1a1d1f→#16264a, 테두리 #2b2f32→#263a63, 강조 배경 #17312e→#163a4a (라이트 모드는 그대로)
 - 확인: Edge 캡처, 글자 대비 본문 14.3 · 회색 글씨 6.0~6.9 · 강조색 9.2 (기준 4.5 이상)
+
+## 2026-11-26 — Vercel 프로젝트 정리 (yura-portfolio 삭제)
+
+- 원인: Yura가 GUI로 만든 `claude-workspace`(GitHub 연결, main 푸시 시 자동 배포)와 내가 CLI로 만든 `yura-portfolio`(빈 프로젝트)가 따로 있었음
+  - 내가 "자동 배포 꺼짐"이라고 한 건 yura-portfolio만 보고 한 잘못된 안내였음
+- `.vercel/project.json` 백업(`.vercel/project.json.bak`) → `vercel link --project claude-workspace`로 다시 연결
+- `vercel project rm yura-portfolio --confirm-name yura-portfolio`로 삭제 → 남은 프로젝트: claude-workspace 1개
+- 이제 GitHub 푸시 = 자동 배포, `vercel --prod` = 같은 사이트 배포
+- 공개 사이트 노출 검사: CLAUDE.md·SECURITY.md·tasks·.env·복구 코드 모두 404

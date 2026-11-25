@@ -1,16 +1,1 @@
-{
-  "projectId": "prj_gEqKO2gjvoNEdmySj80b4eJtAjGK",
-  "orgId": "team_bmjx70wO0kgxLg6N4F7Q0ymX",
-  "projectName": "yura-portfolio",
-  "settings": {
-    "createdAt": 1795619509108,
-    "framework": null,
-    "devCommand": null,
-    "installCommand": null,
-    "buildCommand": null,
-    "outputDirectory": null,
-    "rootDirectory": null,
-    "directoryListing": false,
-    "nodeVersion": "26.x"
-  }
-}
+{"projectId":"prj_4Uw5mgrGAA70V3b2MNCJEreM7LLv","orgId":"team_bmjx70wO0kgxLg6N4F7Q0ymX","projectName":"claude-workspace"}
