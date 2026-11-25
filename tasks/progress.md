@@ -167,3 +167,8 @@
 - `vercel build` 성공, 결과물 index.html 1개
 - `.gitignore`: `.vercel/*` 제외 + `!.vercel/project.json`만 허용 → project.json만 GitHub에
 - 배포 명령 (Yura): `vercel --prod` (claude-workspace 폴더에서)
+
+## 2026-11-26 — 포트폴리오 다크 배경 검정 → 남색
+
+- 다크 모드 색 변경: 배경 #121415→#0f1b33, 카드 #1a1d1f→#16264a, 테두리 #2b2f32→#263a63, 강조 배경 #17312e→#163a4a (라이트 모드는 그대로)
+- 확인: Edge 캡처, 글자 대비 본문 14.3 · 회색 글씨 6.0~6.9 · 강조색 9.2 (기준 4.5 이상)
