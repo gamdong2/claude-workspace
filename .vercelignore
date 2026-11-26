@@ -1,4 +1,8 @@
 /*
 !portfolio
 !vercel.json
-# 위 3줄: 루트의 모든 파일을 제외(/*)하고, portfolio 폴더와 vercel.json만 Vercel에 업로드 허용(!)
+!scripts
+scripts/*
+!scripts/build-config.mjs
+# 루트의 모든 파일을 제외(/*)하고 portfolio 폴더, vercel.json,
+# 그리고 scripts 중 build-config.mjs 한 파일만 Vercel에 업로드 허용(!)

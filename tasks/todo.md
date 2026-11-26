@@ -125,4 +125,4 @@
 - [x] 4. `portfolio/index.html` 맨 아래 방명록 폼 + 리스트 (textContent로 XSS 방지, 설정 없으면 안내 문구)
 - [x] 5. 로컬 테스트: `config.js` 생성 → 로컬 서버(`python -m http.server`) → 글 읽기·쓰기 확인 (테스트 글 1개 작성)
 - [x] 6. progress 기록 (**GitHub 푸시 안 함** — 푸시하면 자동 배포됨. Vercel 환경변수 설정은 다음 단계)
-- [ ] 7. (다음) Vercel 배포 사이트에도 방명록 켜기: Vercel 환경변수 등록 + `vercel.json` buildCommand로 config.js 생성
+- [x] 7. Vercel 배포 사이트에도 방명록 켜기: Vercel 환경변수 등록 + `vercel.json` buildCommand로 config.js 생성

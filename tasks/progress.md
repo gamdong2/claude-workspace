@@ -193,3 +193,10 @@
   - 테스트 글 2개(enc-test, Claude 테스트) DB에 남아 있음
 - 로컬 서버: `python -m http.server 3000 --bind 127.0.0.1 -d portfolio` → http://127.0.0.1:3000/#guestbook
 - GitHub 푸시 안 함
+
+## 2026-11-26 — 배포 사이트 방명록 연결 (Vercel 환경변수)
+
+- 증상: Vercel GUI에 SUPABASE_URL·SUPABASE_ANON_KEY 등록했는데 배포 사이트 방명록이 "준비 중"
+- 원인: ① `vercel.json` buildCommand가 "" → 환경변수를 읽어 config.js 만드는 단계가 없음 ② `.vercelignore`가 scripts/ 업로드 차단
+- 수정: buildCommand = `node scripts/build-config.mjs`, `.vercelignore`에 `scripts/build-config.mjs` 한 파일만 허용 (백업 *.bak)
+- 확인: 로컬 `vercel build`는 윈도우 심볼릭 링크 권한(EPERM) 때문에 실패 → 대신 production 환경변수를 임시로 받아 스크립트 실행, config.js 정상 생성 + 값이 .env.local과 같음 (받은 파일 삭제)
