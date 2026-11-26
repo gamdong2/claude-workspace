@@ -116,3 +116,13 @@
 - [x] 1. 다크 모드 색 4개(배경·카드·테두리·강조 배경)를 남색 계열로 변경
 - [x] 2. 다크·라이트 화면 캡처로 확인
 - [x] 3. 커밋 + push (GitHub 자동 배포는 꺼져 있어 사이트에는 반영 안 됨)
+
+## 2026-11-26 — 포트폴리오 방명록 (Supabase) (✅ 로컬 완료)
+
+- [x] 1. `supabase/messages.sql` 작성: messages(id, name, content, created_at) + RLS(누구나 읽기·쓰기) + 작성시간 조작 방지 → **Yura가 SQL Editor에서 실행**
+- [x] 2. `.env.local`에 `SUPABASE_URL`, `SUPABASE_ANON_KEY` 추가 (기존 VERCEL_OIDC_TOKEN 유지), GitHub 제외 확인
+- [x] 3. `scripts/build-config.mjs`: `.env.local` → `portfolio/config.js` 생성 (config.js는 .gitignore)
+- [x] 4. `portfolio/index.html` 맨 아래 방명록 폼 + 리스트 (textContent로 XSS 방지, 설정 없으면 안내 문구)
+- [x] 5. 로컬 테스트: `config.js` 생성 → 로컬 서버(`python -m http.server`) → 글 읽기·쓰기 확인 (테스트 글 1개 작성)
+- [x] 6. progress 기록 (**GitHub 푸시 안 함** — 푸시하면 자동 배포됨. Vercel 환경변수 설정은 다음 단계)
+- [ ] 7. (다음) Vercel 배포 사이트에도 방명록 켜기: Vercel 환경변수 등록 + `vercel.json` buildCommand로 config.js 생성

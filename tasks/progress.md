@@ -181,3 +181,15 @@
 - `vercel project rm yura-portfolio --confirm-name yura-portfolio`로 삭제 → 남은 프로젝트: claude-workspace 1개
 - 이제 GitHub 푸시 = 자동 배포, `vercel --prod` = 같은 사이트 배포
 - 공개 사이트 노출 검사: CLAUDE.md·SECURITY.md·tasks·.env·복구 코드 모두 404
+
+## 2026-11-26 — 포트폴리오 방명록 (Supabase, 로컬)
+
+- `supabase/messages.sql`: messages(id, name 1~30자, content 1~500자, created_at) + RLS 읽기·쓰기 허용, 수정·삭제 정책 없음, insert는 name·content 칼럼만 → Yura가 SQL Editor에서 실행
+- `.env.local`에 SUPABASE_URL, SUPABASE_ANON_KEY 추가 (백업 `.env.local.bak`, 둘 다 GitHub 제외)
+- `scripts/build-config.mjs`: .env.local → `portfolio/config.js` (gitignore), service_role 키면 중단
+- `portfolio/index.html`: 맨 아래 방명록 폼+목록, 메뉴 링크, textContent로 XSS 방지, 설정 없으면 "준비 중"
+- 테스트: 읽기 200, 쓰기 201, 작성시간 조작 401, 빈 이름 400, 수정·삭제 42501(막힘)
+  - 첫 쓰기 테스트 400 원인: 윈도우 터미널이 curl 인자의 한글을 깨뜨림 (브라우저는 문제없음) → UTF-8 파일로 보내 해결
+  - 테스트 글 2개(enc-test, Claude 테스트) DB에 남아 있음
+- 로컬 서버: `python -m http.server 3000 --bind 127.0.0.1 -d portfolio` → http://127.0.0.1:3000/#guestbook
+- GitHub 푸시 안 함

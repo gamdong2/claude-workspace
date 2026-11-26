@@ -154,6 +154,33 @@
     .contact small { display: block; font-size: 13px; color: var(--muted); font-weight: 600; letter-spacing: 0.04em; margin-bottom: 4px; }
     .contact span { font-weight: 600; overflow-wrap: anywhere; }
 
+    /* ---------- 방명록 ---------- */
+    .gb-intro { color: var(--muted); margin-bottom: 20px; }
+    .gb-form {
+      display: grid; gap: 12px; background: var(--surface); border: 1px solid var(--line);
+      border-radius: var(--radius); padding: 22px 24px; margin-bottom: 24px;
+    }
+    .gb-form label { font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; display: grid; gap: 6px; }
+    .gb-form input, .gb-form textarea {
+      font: inherit; font-size: 15.5px; color: var(--ink); background: var(--bg);
+      border: 1px solid var(--line); border-radius: 10px; padding: 11px 14px; width: 100%;
+    }
+    .gb-form textarea { min-height: 96px; resize: vertical; }
+    .gb-form input:focus, .gb-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+    .gb-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .gb-count { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .gb-form button { cursor: pointer; font-family: inherit; }
+    .gb-form button:disabled { opacity: .6; cursor: progress; transform: none; }
+    .gb-status { font-size: 14px; color: var(--muted); min-height: 1.4em; }
+    .gb-status.error { color: #e5484d; }
+    .gb-list { list-style: none; display: grid; gap: 12px; }
+    .gb-item { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 22px; }
+    .gb-meta { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+    .gb-meta strong { font-size: 15.5px; }
+    .gb-meta time { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+    .gb-item p { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 15.5px; }
+    .gb-empty { color: var(--muted); font-size: 15px; }
+
     footer { padding: 40px 0 56px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--line); }
 
     /* ---------- 반응형: 태블릿 ---------- */
@@ -189,6 +216,7 @@
           <li><a href="#experience">경력</a></li>
           <li class="hide-sm"><a href="#skills">스킬</a></li>
           <li><a href="#contact">연락처</a></li>
+          <li class="hide-sm"><a href="#guestbook">방명록</a></li>
         </ul>
       </nav>
       <button class="theme-toggle" id="theme-toggle" type="button" aria-label="라이트 모드로 바꾸기" title="라이트 모드로 바꾸기">☀️</button>
@@ -337,6 +365,33 @@
         </div>
       </div>
     </section>
+
+    <!-- 방명록 -->
+    <section class="block" id="guestbook">
+      <div class="wrap section-head">
+        <h2>Guestbook</h2>
+        <div>
+          <p class="contact-title">방명록</p>
+          <p class="gb-intro">다녀가신 흔적을 남겨주세요. 남긴 글은 누구나 볼 수 있어요.</p>
+
+          <form class="gb-form" id="gb-form" novalidate>
+            <label>이름
+              <input id="gb-name" name="name" type="text" maxlength="30" autocomplete="name" required placeholder="이름 (최대 30자)" />
+            </label>
+            <label>메시지
+              <textarea id="gb-content" name="content" maxlength="500" required placeholder="메시지 (최대 500자)"></textarea>
+            </label>
+            <div class="gb-row">
+              <span class="gb-count" id="gb-count">0 / 500</span>
+              <button class="btn primary" id="gb-submit" type="submit">남기기</button>
+            </div>
+            <p class="gb-status" id="gb-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <ul class="gb-list" id="gb-list" aria-label="방명록 글 목록"></ul>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -362,6 +417,121 @@
         render();
       });
       render();
+    })();
+  </script>
+
+  <!-- 방명록: Supabase 연결 정보 (scripts/build-config.mjs가 .env.local로 생성) -->
+  <script src="config.js"></script>
+  <script>
+    (function () {
+      var cfg = window.SUPABASE_CONFIG || {};
+      var form = document.getElementById("gb-form");
+      var nameEl = document.getElementById("gb-name");
+      var contentEl = document.getElementById("gb-content");
+      var countEl = document.getElementById("gb-count");
+      var submitEl = document.getElementById("gb-submit");
+      var statusEl = document.getElementById("gb-status");
+      var listEl = document.getElementById("gb-list");
+
+      function setStatus(msg, isError) {
+        statusEl.textContent = msg || "";
+        statusEl.classList.toggle("error", !!isError);
+      }
+
+      // 설정이 없으면 폼을 끄고 안내만
+      if (!cfg.url || !cfg.anonKey) {
+        Array.prototype.forEach.call(form.elements, function (el) { el.disabled = true; });
+        setStatus("방명록을 준비 중이에요.");
+        return;
+      }
+
+      var api = cfg.url.replace(/\/$/, "") + "/rest/v1/messages";
+      var headers = {
+        apikey: cfg.anonKey,
+        Authorization: "Bearer " + cfg.anonKey,
+        "Content-Type": "application/json"
+      };
+      var fmt = new Intl.DateTimeFormat("ko-KR", {
+        year: "numeric", month: "2-digit", day: "2-digit",
+        hour: "2-digit", minute: "2-digit", timeZone: "Asia/Seoul"
+      });
+
+      // 글 하나 그리기 — 사용자가 쓴 글은 반드시 textContent로 (XSS 방지)
+      function renderItem(m) {
+        var li = document.createElement("li");
+        li.className = "gb-item";
+        var meta = document.createElement("div");
+        meta.className = "gb-meta";
+        var who = document.createElement("strong");
+        who.textContent = m.name;
+        var when = document.createElement("time");
+        when.dateTime = m.created_at;
+        when.textContent = fmt.format(new Date(m.created_at));
+        meta.append(who, when);
+        var body = document.createElement("p");
+        body.textContent = m.content;
+        li.append(meta, body);
+        return li;
+      }
+
+      function renderList(rows) {
+        listEl.replaceChildren();
+        if (!rows.length) {
+          var empty = document.createElement("li");
+          empty.className = "gb-empty";
+          empty.textContent = "아직 글이 없어요. 첫 글을 남겨주세요!";
+          listEl.append(empty);
+          return;
+        }
+        rows.forEach(function (m) { listEl.append(renderItem(m)); });
+      }
+
+      function load() {
+        return fetch(api + "?select=id,name,content,created_at&order=created_at.desc&limit=50", { headers: headers })
+          .then(function (res) {
+            if (!res.ok) throw new Error("HTTP " + res.status);
+            return res.json();
+          })
+          .then(renderList)
+          .catch(function (err) {
+            console.error("방명록 불러오기 실패:", err);
+            setStatus("글을 불러오지 못했어요. 잠시 후 다시 시도해주세요.", true);
+          });
+      }
+
+      contentEl.addEventListener("input", function () {
+        countEl.textContent = contentEl.value.length + " / 500";
+      });
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var name = nameEl.value.trim();
+        var content = contentEl.value.trim();
+        if (!name) { setStatus("이름을 입력해주세요.", true); nameEl.focus(); return; }
+        if (!content) { setStatus("메시지를 입력해주세요.", true); contentEl.focus(); return; }
+
+        submitEl.disabled = true;
+        setStatus("저장하는 중…");
+        fetch(api, {
+          method: "POST",
+          headers: Object.assign({ Prefer: "return=minimal" }, headers),
+          body: JSON.stringify({ name: name, content: content })
+        })
+          .then(function (res) {
+            if (!res.ok) return res.text().then(function (t) { throw new Error("HTTP " + res.status + " " + t); });
+            form.reset();
+            countEl.textContent = "0 / 500";
+            setStatus("남겨주셔서 고마워요! 🙌");
+            return load();
+          })
+          .catch(function (err) {
+            console.error("방명록 저장 실패:", err);
+            setStatus("저장하지 못했어요. 잠시 후 다시 시도해주세요.", true);
+          })
+          .finally(function () { submitEl.disabled = false; });
+      });
+
+      load();
     })();
   </script>
 </body>

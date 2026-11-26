@@ -47,3 +47,6 @@ desktop.ini
 !.vercel/project.json
 
 .env*
+
+# 방명록 설정 (scripts/build-config.mjs가 .env.local로 자동 생성)
+portfolio/config.js
